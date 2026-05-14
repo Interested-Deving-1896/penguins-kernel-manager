@@ -147,3 +147,12 @@ Forked from [openos-project/lkm](https://gitlab.com/openos-project/linux-kernel_
 which merges:
 - [lkf](https://gitlab.com/openos-project/linux-kernel_filesystem_deving/lkf) — Linux Kernel Framework
 - [ukm](https://gitlab.com/openos-project/linux-kernel_filesystem_deving/ukm) — Universal Kernel Manager
+
+## Origins
+
+penguins-kernel-manager is forked from and extends:
+- [Interested-Deving-1896/lkm](https://github.com/Interested-Deving-1896/lkm) — Linux Kernel Manager (lkf + ukm merger)
+- [Interested-Deving-1896/lkf](https://github.com/Interested-Deving-1896/lkf) — Linux Kernel Framework (shell build pipeline)
+- [Interested-Deving-1896/ukm](https://github.com/Interested-Deving-1896/ukm) — Universal Kernel Manager (runtime management)
+- [bkw777/mainline](https://github.com/bkw777/mainline) — Ubuntu Mainline PPA kernel installer
+- [bobbycomet/XKM-Multi-Kernel-Manager](https://github.com/bobbycomet/XKM-Multi-Kernel-Manager) — multi-kernel manager reference
