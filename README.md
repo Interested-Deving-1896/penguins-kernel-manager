@@ -1,84 +1,20 @@
+[update-readmes]   Mode: rewrite — migrating to template structure...
 # penguins-kernel-manager
 
-Install, build, and manage Linux kernels across all major distributions and CPU
-architectures from a single CLI or GUI.
+[![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/penguins-kernel-manager)
 
-Forked from [lkm](https://github.com/Interested-Deving-1896/lkm) and rebranded
-as part of the **penguins ecosystem** alongside
-[penguins-eggs](https://github.com/Interested-Deving-1896/penguins-eggs) and
-[penguins-recovery](https://github.com/Interested-Deving-1896/penguins-recovery).
+<!-- AI:start:what-it-does -->
+_Description pending._
+<!-- AI:end:what-it-does -->
 
-Merges **lkf** (Linux Kernel Framework — shell build pipeline) and **ukm**
-(Universal Kernel Manager — runtime management) into one tool covering the full
-kernel lifecycle:
+## Architecture
 
-```
-fetch → patch → configure → compile → package → install → hold → remove
-```
-
----
-
-## penguins-eggs & penguins-recovery integration
-
-penguins-kernel-manager has **bidirectional** integration with the penguins
-ecosystem:
-
-### penguins-kernel-manager → penguins-eggs / penguins-recovery
-
-| Event | Action |
-|---|---|
-| Pre-install | Calls `penguins-recovery snapshot create pre-kernel-<version>` if recovery is present |
-| Post-install | Notifies eggs via `eggs kernel-changed` hook so the next ISO reflects the new kernel |
-| Pre-remove | Warns if the kernel being removed is the one embedded in the last eggs ISO |
-| Post-remove-old | Triggers `eggs produce --update-kernel-list` (non-blocking, best-effort) |
-
-Configure in `/etc/penguins-kernel-manager/hooks.conf`:
-
-```toml
-[hooks]
-eggs_bin        = "/usr/bin/eggs"          # set to "" to disable
-recovery_bin    = "/usr/bin/penguins-recovery"
-pre_install_snapshot  = true
-post_install_notify   = true
-pre_remove_warn       = true
-post_remove_old_sync  = false              # set true to rebuild ISO automatically
-```
-
-### penguins-eggs / penguins-recovery → penguins-kernel-manager
-
-penguins-kernel-manager registers itself as a plugin for both tools:
-
-**eggs plugin** (`integration/eggs-plugin/pkm-hook.sh`):
-- Called by `eggs produce` to embed the currently managed kernel list into the ISO
-- Called by `eggs update` to check for held kernels before updating
-
-**recovery plugin** (`integration/recovery-plugin/pkm-plugin.sh`):
-- Registered as a `distro`-type powerwash plugin
-- `pw_plugin_pre_reset()` — snapshots the kernel state before a factory reset
-- `pw_plugin_post_reset()` — reinstalls the held kernel after a hard reset
-
----
-
-## Kernel sources
-
-| Source | Architectures |
-|---|---|
-| Ubuntu Mainline PPA | amd64, arm64, armhf, ppc64el, s390x, i386 |
-| XanMod | amd64 (v1–v4, edge, lts, rt) |
-| Liquorix | amd64 |
-| Distro-native (system package manager) | all |
-| Gentoo source compilation | all |
-| Local file (.deb / .rpm / .pkg.tar.* / .apk / .xbps) | all |
-| **lkf build** (compile from source via lkf profiles) | all |
-
-## Distributions supported
-
-Any distro using one of: `apt`, `pacman`, `dnf`, `zypper`, `apk`, `portage`,
-`xbps`, `nix`.
-
----
+<!-- AI:start:architecture -->
+_Architecture documentation pending._
+<!-- AI:end:architecture -->
 
 ## Install
+
 
 ```bash
 # CLI only
@@ -93,57 +29,54 @@ pip install "penguins-kernel-manager[pyqt6]"
 
 ---
 
-## CLI usage
+## Usage
 
-```bash
-penguins-kernel-manager list
-penguins-kernel-manager install 6.12.0
-penguins-kernel-manager remove 6.8.0
-penguins-kernel-manager hold   6.12.0
-penguins-kernel-manager unhold 6.12.0
-penguins-kernel-manager remove-old --keep=2
-penguins-kernel-manager info
+<!-- Add usage examples here. This section is yours — the AI will not modify it. -->
 
-# Build from lkf profile
-penguins-kernel-manager remix --file ~/.local/share/lkf/profiles/gaming.toml --install
-penguins-kernel-manager build --version 6.12 --flavor mainline --llvm --lto thin --output deb --install
+## Configuration
 
-# Legacy short alias
-pkm list
+<!-- Document configuration options here. This section is yours — the AI will not modify it. -->
+
+## CI
+
+<!-- AI:start:ci -->
+_CI documentation pending._
+<!-- AI:end:ci -->
+
+## Mirror chain
+
+<!-- AI:start:mirror-chain -->
+This repo is maintained in [`Interested-Deving-1896/penguins-kernel-manager`](https://github.com/Interested-Deving-1896/penguins-kernel-manager) and mirrored through:
+
+```
+Interested-Deving-1896/penguins-kernel-manager  ──►  OpenOS-Project-OSP/penguins-kernel-manager  ──►  OpenOS-Project-Ecosystem-OOC/penguins-kernel-manager
 ```
 
-## GUI
+Changes flow downstream automatically via the hourly mirror chain in
+[`fork-sync-all`](https://github.com/Interested-Deving-1896/fork-sync-all).
+Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-Deving-1896`.
+<!-- AI:end:mirror-chain -->
 
-```bash
-penguins-kernel-manager-gui
-# or
-pkm-gui
-```
+## Contributors
 
----
+<!-- AI:start:contributors -->
+_Contributors pending._
+<!-- AI:end:contributors -->
 
-## Development
+## Origins
 
-```bash
-git clone https://github.com/Interested-Deving-1896/penguins-kernel-manager
-cd penguins-kernel-manager
-python3 -m venv .venv && source .venv/bin/activate
-pip install -e ".[dev]"
+<!-- AI:start:origins -->
+_No dependency graph found. Run `generate-dep-graph.yml` to generate `dep-graph/origins.md`._
+<!-- AI:end:origins -->
 
-pytest
-ruff check penguins_kernel_manager/
-mypy penguins_kernel_manager/
-```
+## Resources
 
----
+<!-- AI:start:resources -->
+_No additional resource files found._
+<!-- AI:end:resources -->
 
 ## License
 
-GPL-3.0-or-later. See [LICENSE](LICENSE).
-
-## Upstream
-
-Forked from [Interested-Deving-1896/lkm](https://github.com/Interested-Deving-1896/lkm),
-which merges:
-- [lkf](https://github.com/Interested-Deving-1896/lkf) — Linux Kernel Framework
-- [ukm](https://github.com/Interested-Deving-1896/ukm) — Universal Kernel Manager
+<!-- AI:start:license -->
+[GPL-3.0](https://github.com/Interested-Deving-1896/penguins-kernel-manager/blob/main/LICENSE) © 2026 [Interested-Deving-1896](https://github.com/Interested-Deving-1896)
+<!-- AI:end:license -->
