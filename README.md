@@ -4,7 +4,7 @@
 [![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/penguins-kernel-manager)
 
 <!-- AI:start:what-it-does -->
-_Description pending._
+This project provides tools for building, installing, and managing Linux kernels across various distributions and architectures. It is designed for developers and system administrators working with the Penguins ecosystem, including integration with related tools like Penguins Eggs and Penguins Recovery. It supports both command-line and GUI interfaces for kernel management tasks.
 <!-- AI:end:what-it-does -->
 
 ## Architecture
@@ -78,5 +78,5 @@ _No additional resource files found._
 ## License
 
 <!-- AI:start:license -->
-<!-- License not detected — add a LICENSE file to this repo. -->
+[GPL-3.0](https://github.com/Interested-Deving-1896/penguins-kernel-manager/blob/main/LICENSE) © 2026 [Interested-Deving-1896](https://github.com/Interested-Deving-1896)
 <!-- AI:end:license -->
