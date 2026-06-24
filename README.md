@@ -4,13 +4,42 @@
 [![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/penguins-kernel-manager)
 
 <!-- AI:start:what-it-does -->
-This project provides tools for building, installing, and managing Linux kernels across various distributions and architectures. It is designed for developers and system administrators working with the Penguins ecosystem, including integration with related tools like Penguins Eggs and Penguins Recovery. It supports both command-line and GUI interfaces for kernel management tasks.
+This project provides a tool for building, installing, and managing Linux kernels across various distributions and architectures. It is designed for developers and system administrators who need a unified interface for handling custom kernels, with support for integration into the Penguins ecosystem tools like Penguins Eggs and Penguins Recovery. The project includes both CLI and GUI options and supports extensibility through plugins.
 <!-- AI:end:what-it-does -->
 
 ## Architecture
 
 <!-- AI:start:architecture -->
-_Architecture documentation pending._
+The project is structured as a Python package with CLI and GUI entry points for managing Linux kernels across distributions and architectures. The main components include:
+
+1. **CLI (`penguins_kernel_manager/cli`)**: Implements command-line functionality for kernel management tasks.
+2. **GUI (`penguins_kernel_manager/gui`)**: Provides a graphical interface using PySide6 or PyQt6 for kernel management.
+3. **Integration scripts (`integration`)**: Contains plugins for Penguins Eggs and Penguins Powerwash tools, enabling seamless integration with related projects.
+4. **Tests (`tests`)**: Includes unit tests for verifying functionality.
+5. **Profiles (`profiles`)**: Stores configuration files and templates for supported distributions and kernel variants.
+6. **Scripts (`scripts`)**: Utility scripts for development and deployment tasks.
+
+The directory structure is as follows:
+
+```plaintext
+.
+├── .github/                # GitHub workflows
+├── integration/            # Integration scripts for related tools
+│   ├── eggs-plugin/
+│   └── recovery-plugin/
+├── penguins_kernel_manager/ # Main Python package
+│   ├── cli/
+│   ├── gui/
+│   ├── core/
+│   └── utils/
+├── profiles/               # Kernel and distro profiles
+├── scripts/                # Development and deployment scripts
+├── tests/                  # Unit tests
+├── Makefile                # Build and integration targets
+├── pyproject.toml          # Python project configuration
+├── README.md               # Project documentation
+└── LICENSE                 # License file
+```
 <!-- AI:end:architecture -->
 
 ## Install
